@@ -1,0 +1,287 @@
+*{
+    box-sizing: border-box;
+    user-select: none;   
+}
+
+:root[data-theme ='dark' ]{
+    --color-menu-bg  :#062455;
+}
+:root[data-theme='light']{
+    --color-menu-bg : #CDE0FF;
+    --color-scrollbar: #CDE0FF ;
+
+}
+p{
+    color: white;
+}
+input{
+    color: black;
+    outline: none;
+}
+
+
+.main_container{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    height: 100vh;
+    border: 1px solid;
+    gap: 5px;
+
+}
+.menu{
+    display:  flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    width: 60px;
+    border-radius: 20px;
+    background-color: var(--color-menu-bg);
+    box-shadow: 1px 1px 5px;
+}
+#home , #slider{
+    color: #0D47A1;
+    font-size: 1.4em;
+}
+
+.nav_chat_conatiner{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 20px;
+}
+.chat_container{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5px;
+    gap: 1px;
+}
+.info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    padding: 5px ;
+    gap: 10px;
+}
+.room_profile img{
+    height: 40px;
+    width: 40px;
+}
+.room_profile{
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+}
+.room_content  {
+    text-align: left;
+    width: 100%;
+    
+}
+.room_name{
+    font-weight: bold;
+}
+.room_online_users{
+    font-size: small;
+}
+#room_three_dots{
+    color:#0D47A1 ;
+    cursor: pointer;
+}
+.input_message{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 35px;
+    gap: 5px;
+    padding: 0 5px;
+    
+}
+.input_message input{
+    width: 100%;
+    font-size: 1rem;
+    padding: 5px;
+    background: transparent;
+    border: 1px solid #81A9E8;
+    border-radius: 20px;
+    box-shadow:1px 1px 5px  ;
+    height: fit-content;
+    text-wrap: wrap;
+    
+}
+#send{
+    font-size: 25px;
+    color:#0D47A1 ;
+    cursor: pointer;
+    text-shadow:1px 1px 5px black ;
+}
+.contact_nav{
+    display: flex;
+    flex-direction: column;
+    padding: 5px 0 ;
+    gap: 5px;
+}
+.filter{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    border-radius: 20px;
+    margin: 0 5px;
+    border: 1px solid #81A9E8;
+    box-shadow: 1px 1px 5px ;
+}
+.filter input{
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%;
+}
+#search{
+    color: #0D47A1;
+}
+.message_card{
+    border: 1px solid #DBD9D5 ;
+    border-radius: 10px;
+    padding: 0 5px;
+
+}
+#sender_name{
+    font-weight: bold;
+}
+#message_content{
+    font-size: 15px;
+    max-width: 600px;
+    min-width: 100px;
+    overflow-wrap: anywhere;
+    
+}
+#time_sent{
+    font-size: small;
+}
+
+.display_message{
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    scrollbar-color:var(--color-scrollbar) transparent ;
+    padding-right: 5px;
+    border-radius: 10px;
+    height: 100%;
+    position: relative;
+}
+.driver{
+    position: sticky;
+    bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    background-color: transparent;
+    padding: 0 10px;
+}
+#arrow{
+    color: #0D47A1;
+    cursor: pointer;
+    font-size: 20px;
+}
+.to_right{
+    justify-content: right;
+    flex-direction: row-reverse;
+}
+.to_right #sender_name{
+    text-align: right;
+}
+.to_left #sender_name{
+    text-align: left;
+}
+.to_right #time_sent{
+    text-align: left;
+}
+.to_left #time_sent{
+    text-align: right;
+}
+.to_left{
+    justify-content: left;
+    flex-direction: row;
+}
+.outer_message_card{
+    display: flex;
+    gap: 4px;
+    padding: 5px 0;
+}
+.message_profile{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;    
+}
+.message_profile img {
+    width: 30px;
+    height: 30px;
+}
+
+.contact_cards_container{
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    scrollbar-color: var(--color-scrollbar) transparent;
+}
+.contact_card{
+    display: flex;
+    border: 1px solid #DBD9D5 ;
+    border-radius: 10px;
+    height: 60px;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px 0;
+    padding: 5px;
+}
+.contact_card:hover{
+    box-shadow: 1px 1px 5px #B9D3FD;
+    cursor: pointer;
+}
+.contact_card_porfile{
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+.contact_card_porfile img {
+    height: 40px;
+    width: 40px;
+}
+.contact_card_content{
+    text-align: left;
+    flex: 1;
+    padding: 0 5px;
+}
+.contact_card_sender{
+    font-weight: bold;
+}
+.contact_card_message{
+    font-size: small;
+}
+.contact_card_time{    
+    height: 40px;
+    font-size: small;
+}
+#bar{
+    height: 100%;
+    width: 5px;
+    cursor: ew-resize;
+    background-color: #D1CEC9;
+    align-self: stretch;
+    border-radius: 3px;
+}
+
+
+
+#error{
+    color: black;
+}

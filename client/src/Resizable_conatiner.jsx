@@ -7,9 +7,9 @@ import { useEffect, useRef, useState } from 'react'
     const [width,setWidth] = useState(250);
     const [minWith,maxWidth] =  [ 200 ,350] ;
     const isResizing = useRef(false) ;
+    const [selected,setSelected] = useState(null);
     function hundleOnMoseDown(){
         isResizing.current = true ;
-        console.log('hi');
     }
     useEffect(()=>{
         function hundleOnMouseMove(e){
@@ -35,13 +35,13 @@ import { useEffect, useRef, useState } from 'react'
 
     return <>
         <div className="nav_chat_conatiner">
-            <ContactNav width = {width}
+            <ContactNav width = {width} hundleSelected ={setSelected}
                                 
             ></ContactNav>
             <div id='bar' onMouseDown={hundleOnMoseDown}  > 
             
             </div>
-            <ChatContainer username={username} socket={socket} ></ChatContainer>
+            <ChatContainer username={username} socket={socket}  ></ChatContainer>
         </div>
     </>
  }

@@ -2,12 +2,13 @@ import { useState } from 'react';
 import {FaPaperPlane} from 'react-icons/fa';
 
 
-function InputMessage({username,socket,hundleScoll}){
+function InputMessage({socket,hundleScoll}){
     const [userInput,setUserInput]= useState('');
     function onSend(){
-        socket.emit('send',username,userInput);
+        socket.emit('message',userInput);
         setUserInput('');
-        hundleScoll() ;
+        setTimeout(hundleScoll,100);
+        //hundleScoll() ;
     }
 
     return <>

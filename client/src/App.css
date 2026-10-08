@@ -285,3 +285,143 @@ input{
 #error{
     color: black;
 }
+
+#event{
+    color: #22201B;
+    background-color: #DBD9D5;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 0;
+    font-size: small;
+    font-weight: bold;
+    
+}
+.event_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px 0;
+}
+.room_options{
+    position: relative;
+}
+.options_container{
+    position: absolute;
+    right:50%;
+    transform: translateX(-10%);
+    top: 50%;
+    width: 100px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background-color: #F7FAFE;
+    font-size: 14px;
+    z-index: 2;
+    box-shadow: 1px 1px 5px gray;
+    color: #0D47A1;
+    overflow: hidden;
+    
+
+}
+.options_container {
+    margin: 0;
+    padding: 0;
+}
+.options_container  li{
+    list-style: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    text-align: left;
+
+
+}
+.options_container  li:hover{
+    background-color: #deeafefd;
+}
+
+.more_info_container{
+    color:black;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.more_info_header{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding: 0 2px;
+}
+#more_info_header_arrow{
+    font-size: 20px;
+    cursor: pointer;
+    color: #0D47A1;
+}
+.more_info_scroll_container{
+    overflow-y: scroll;
+    height: 100%;
+    scrollbar-color: var(--color-scrollbar) transparent;
+}
+.group_card{
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+.group_card_profile{
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.group_card_profile img{
+    height: 150px;
+    width: 150px;
+}
+.group_card_name{
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.group_card_nbr_online{
+    font-size: small;
+}
+.members_header{
+    text-align: left;
+    padding-left: 5px;
+    font-size: 1.2rem;
+    color: #22201B;
+    font-weight: bold;
+}
+
+.members_list{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 5px;
+}
+.user_card{
+    border: 1px solid #DBD9D5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px ;
+    border-radius: 10px ;
+    cursor: pointer;
+}
+.user_card:hover{
+    box-shadow: 0px 0px 5px rgb(197, 197, 197) ;
+}
+.user_card_name{
+    flex: 1;
+    text-align: left;
+    padding: 0 5px;
+    font-weight: bold;
+}
+.user_card_profile{
+    border-radius: 100%;
+    height: 50px;
+    width: 50px;
+}

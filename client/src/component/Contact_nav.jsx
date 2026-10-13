@@ -2,7 +2,7 @@ import ContactCard from './Contact_card';
 import Filter from './Filter';
 
 
-function ContactNav({width}){
+function ContactNav({width,hundleSelected}){
     return<>
         <div className="contact_nav" style={{width:`${width}px`}}>
             <Filter></Filter>

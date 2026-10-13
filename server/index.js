@@ -78,7 +78,6 @@ function getOldMessages(room){
     return req.all({room:room,limit:MaxRecoveredMessages});
 }
 
-
 function getLastMessageTimeSent(id){
     if(lastMessageTimeSent.has(id)) return lastMessageTimeSent.get(id);
     return null;
@@ -91,12 +90,23 @@ function deleteFromlastMessageTimeSentDB(id){
 }
 
 
+function getAllOldMessagesForAllRooms(rooms){
+    const history = new Map();
+    rooms.map(room=>{
+        
+        history.set(room,getOldMessages(room));
+    })
+    return [...history.entries()];
+}
+
+
 const  userNameToId = new Map();
 const  IdToUsername = new Map();
 const lastMessageTimeSent = new Map();
 const CoolDownTime = 100 ;
 const MaxRecoveredMessages = 20 ;
 const MaxMessageLength = 500 ;
+
 
 function clearHistoryForEmptyRooms(room){
     if(room==='general') return ;
@@ -148,6 +158,10 @@ io.on('connection',(socket)=>{
     })
     socket.on('get online users',()=>{
         socket.emit('online users',getOnlineUsers(socket));
+    })
+    socket.on('get old messages',rooms=>{
+        console.log(getAllOldMessagesForAllRooms(rooms));
+        socket.emit('post old messages',getAllOldMessagesForAllRooms(rooms));
     })
     socket.on('message',(msg)=>{
         const now = Date.now();

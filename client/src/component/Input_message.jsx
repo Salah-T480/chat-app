@@ -2,10 +2,23 @@ import { useState } from 'react';
 import {FaPaperPlane} from 'react-icons/fa';
 
 
-function InputMessage({socket,hundleScoll}){
+function InputMessage({socket,hundleScoll,selected}){
     const [userInput,setUserInput]= useState('');
+    const componentType = selected["contactType"] ;
+    const roomName = selected["roomName"] ;
     function onSend(){
-        socket.emit('message',userInput);
+        if(componentType === 'dm'){
+            const data = {
+                text : userInput ,
+                user : roomName 
+            }
+            socket.emit('msg',data) ;
+        }
+        else{
+            socket.emit('message',userInput,roomName);
+        }
+        console.log("roomName",roomName);
+        console.log("componentType",componentType);
         setUserInput('');
         setTimeout(hundleScoll,100);
         //hundleScoll() ;

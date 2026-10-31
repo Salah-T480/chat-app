@@ -17,9 +17,10 @@ function DisplayMessage({username,myRef,hundleScoll,history}){
                     return <MessageCard sender={data.sender} time={data.time} message={data.message} key={i} username={username} ></MessageCard>   
                 }
                 else{
-                    const event = obj.get('event');
-                    return <div className="event_container">
-                        <p id='event'> {event} </p>
+                    const eventObj = obj.get('event');
+
+                    return <div className="event_container" key={i}>
+                        <p id='event'> {eventObj["info"]} </p>
                     </div>
                 }
             })

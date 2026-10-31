@@ -7,7 +7,7 @@ import MoreInfo from "./More_info";
 
 
 
-function ChatContainer({username,socket,history=[],hundleAddDataToHistory,id}){
+function ChatContainer({username,socket,history=[],hundleAddDataToHistory,id,hundleClearRoomHistory,selected}){
     const myRef = useRef(null) ;
     // history = [{'msg': {sender : name ,time : now , message : msg }}, {'event':'ali join this room'}]
     const [showInfoPage,setShowInfoPage]= useState(false);
@@ -43,21 +43,30 @@ function ChatContainer({username,socket,history=[],hundleAddDataToHistory,id}){
     })
     */
     useEffect(()=>{
-        socket.on('new message',(obj)=>{
+        const hundleNewMessage = (obj,to)=>{
             const data = new Map();
+            console.log("obj->",obj);
             data.set('msg',obj);
-            hundleAddDataToHistory(id,data);
-        })
+            hundleAddDataToHistory(data,to);
+            console.log("id",id);
+        } ;
+        socket.on('new message',hundleNewMessage);
         return ()=>{
-            socket.off('new message');
+            socket.off('new message',hundleNewMessage);
         }
     },[socket])
 
     useEffect(()=>{
         socket.on('new user join a room',(new_user)=>{
             const data =  new Map() ;
-            data.set('event',`${new_user} join this room`);
-            hundleAddDataToHistory(id,data);
+            const obj =  {
+                "info" : `${new_user} join this room` ,
+                "time" : Date.now() 
+            }
+            data.set('event',obj);
+            //data.set('time', Date.now());
+            //console.log(Date.now());
+            //hundleAddDataToHistory(data,"");
         })
         return ()=>{
             socket.off('new user join a room');
@@ -74,16 +83,16 @@ function ChatContainer({username,socket,history=[],hundleAddDataToHistory,id}){
     return <>
     
     <div className="chat_container">
-        {showInfoPage? <MoreInfo  setShowInfoPage={setShowInfoPage} online={online}></MoreInfo>
+        {showInfoPage? <MoreInfo  setShowInfoPage={setShowInfoPage} online={online} roomName={id} ></MoreInfo>
                     :    
                     <>
-                        <Info socket={socket}  setShowInfoPage={setShowInfoPage} numberOnline={numberOnline} ></Info>    
+                        <Info hundleClearRoomHistory={hundleClearRoomHistory} setShowInfoPage={setShowInfoPage} numberOnline={numberOnline} roomName ={id} ></Info>    
                         <DisplayMessage history={history}
                                         socket={socket} username={username} myRef={myRef}
                                         hundleScoll={hundleScoll} 
 
                         ></DisplayMessage>
-                        <InputMessage username={username} socket={socket} hundleScoll={hundleScoll} ></InputMessage>
+                        <InputMessage username={username} socket={socket} hundleScoll={hundleScoll} selected={selected}  ></InputMessage>
                     </>
         }
         </div></>

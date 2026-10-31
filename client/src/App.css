@@ -261,10 +261,13 @@ input{
     flex: 1;
     padding: 0 5px;
 }
-.contact_card_sender{
+.contact_card_roomName{
     font-weight: bold;
 }
 .contact_card_message{
+    font-size: small;
+}
+.contact_card_sender{
     font-size: small;
 }
 .contact_card_time{    

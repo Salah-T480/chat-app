@@ -1,6 +1,6 @@
 import {FaArrowLeft} from 'react-icons/fa'
 
-export default function MoreInfo({setShowInfoPage,online}){
+export default function MoreInfo({setShowInfoPage,online,roomName}){
     function hundleOnReturnToChatPage(){
         setShowInfoPage(old=>!old);
     }
@@ -16,7 +16,7 @@ export default function MoreInfo({setShowInfoPage,online}){
                 </div>
                 
                 <div className="group_card_name">
-                    General
+                    {roomName}
                 </div>
                 
                 <div className="group_card_nbr_online">
@@ -29,8 +29,8 @@ export default function MoreInfo({setShowInfoPage,online}){
                 </div>
                 <ul className="members_list">
                     {
-                        online.map(user=>
-                            <li className="user_card">
+                        online.map((user,i)=>
+                            <li className="user_card" key={i}>
                                 <img src="/src/assets/vite.svg" className='user_card_profile' alt="" />
                                 <div className="user_card_name"> {user} </div>
                             </li>

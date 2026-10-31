@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import {FaEllipsisV} from 'react-icons/fa'
 import  RoomOptions from './Room_options'
-function Info({numberOnline,setHistory,setShowInfoPage}){
+function Info({numberOnline,hundleClearRoomHistory,setShowInfoPage,roomName}){
     const [showOp,setShowOp] = useState(false);
     
     
     function hundleOnClear(){
-        setHistory([]);
+        hundleClearRoomHistory(roomName);
         setShowOp(false);
     }
     function hundleOnShowMoreInfo(){
@@ -18,7 +18,7 @@ function Info({numberOnline,setHistory,setShowInfoPage}){
                 <img src="/src/assets/vite.svg" alt="" />
             </div>
             <div className="room_content">
-                <div className="room_name">General</div>
+                <div className="room_name">{roomName}</div>
                 <div className="room_online_users">{numberOnline} online</div>
             </div>
             <div className="room_options">

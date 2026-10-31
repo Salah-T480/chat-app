@@ -103,9 +103,24 @@ function getAllOldMessagesForAllRooms(rooms){
 const  userNameToId = new Map();
 const  IdToUsername = new Map();
 const lastMessageTimeSent = new Map();
+const usersForEachRoom = new Map() ;
 const CoolDownTime = 100 ;
 const MaxRecoveredMessages = 20 ;
 const MaxMessageLength = 500 ;
+
+
+function sendTo(socket,data,to){
+    console.log("to",to);
+    const toList = usersForEachRoom.get(to) ;
+    if(toList!==undefined)
+    toList.map((user)=>{
+        const userId = getIdFromDB(user) ;
+        if(userId) socket.to(userId).emit('new message',data,to);
+        console.log("user",user);
+    })  ;
+    socket.emit('new message',data,to);
+
+}
 
 
 function clearHistoryForEmptyRooms(room){
@@ -145,6 +160,15 @@ io.on('connection',(socket)=>{
             socket.emit('valid',username);
             addToUsersDb(socket.id,username,'general');
             socket.join('general');
+            if(usersForEachRoom.has("general")){
+                const newUsers = new Map();
+                const oldUsers = usersForEachRoom.get("general");
+                usersForEachRoom.set("general",[...oldUsers,username]);
+            }
+            else{
+                usersForEachRoom.set("general",[username]);
+            }
+
             socket.room= 'general';
             console.log(`${username} connected with socketID ${socket.id} `);
             console.log(`${username} joined the general room `);
@@ -163,7 +187,7 @@ io.on('connection',(socket)=>{
         console.log(getAllOldMessagesForAllRooms(rooms));
         socket.emit('post old messages',getAllOldMessagesForAllRooms(rooms));
     })
-    socket.on('message',(msg)=>{
+    socket.on('message',(msg,roomName)=>{
         const now = Date.now();
         const lastTime = getLastMessageTimeSent(socket.id);
         if(lastTime){
@@ -181,13 +205,16 @@ io.on('connection',(socket)=>{
             socket.emit('error',`message too long (max ${MaxMessageLength} chars)`);
             return ;
         }
-        addToRoomsHistoryDB(socket.room,Date.now(),name,msg);
+        addToRoomsHistoryDB(roomName,Date.now(),name,msg);
         const data  =  {
             sender : name ,
             time : now ,
-            message : msg 
+            message : msg ,
+        
         }
-        io.to(socket.room).emit('new message',data);
+        //io.to(socket.room).emit('new message',data);
+        sendTo(socket,data,roomName) ;
+        //socket.emit('new message',data,roomName);
         //socket.to(socket.room).emit('new message',data);
         setLastMessageTimeSent(socket.id,now) ;
     })
@@ -229,7 +256,9 @@ io.on('connection',(socket)=>{
             socket.emit('error','no user found named '+data.user);
             return;
         }
-        const fullText = data.text.join(' ').trim();
+        console.log("data",data);
+        console.log(data.text); 
+        const fullText = data.text.trim();
         if(!fullText) return;
         if(fullText.length>MaxMessageLength){
             socket.emit('error',`message too long (max ${MaxMessageLength} chars)`);
@@ -237,8 +266,14 @@ io.on('connection',(socket)=>{
         }
         const name = getUserNameFromDB(socket.id) ;
         const targetId = getIdFromDB(data.user);
-        socket.to(targetId).emit('dm',name,fullText);
-        socket.emit('dm sent',data.user,fullText);
+        const obj ={
+            from : name ,
+            to   : data.user,
+            message : fullText,
+            time : now 
+        };
+        socket.to(targetId).emit('dm',obj);
+        socket.emit('dm sent',obj);
         setLastMessageTimeSent(socket.id,now) ;
     })
     socket.on('leave',()=>{

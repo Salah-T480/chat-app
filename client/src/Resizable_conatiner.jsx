@@ -114,7 +114,7 @@ import { useEffect, useRef, useState } from 'react'
         }else{
             data.set("type","empty"); // for empty room 
         }
-        console.log(" [ResizableContainer] :data ",data);
+        //console.log(" [ResizableContainer] :data ",data);
         return data ;
     }
     function getLastMessagesForEachContacts(globalHistory){
@@ -122,15 +122,15 @@ import { useEffect, useRef, useState } from 'react'
         for( const [roomName,historyList] of globalHistory.entries() ){
             //console.log("[ResizableContainer] : istoryList,roomName);
             const res = hundleLastMessages(historyList,roomName) ;
-            console.log("[] res:" ,res);
+            //console.log("[] res:" ,res);
             last.push(res) ;
         }
         //console.log("[ResizableContainer] : ast);
-        console.log("last ",last);
+        //console.log("last ",last);
         return last ;
     }   
     const lastMessagesAndEvents = getLastMessagesForEachContacts(globalHistory);
-    console.log("[ResizableContainer] : lastMessagesAndEvents",lastMessagesAndEvents);
+    //console.log("[ResizableContainer] : lastMessagesAndEvents",lastMessagesAndEvents);
 //    console.log("[ResizableContainer] : lobalHistory);
     useEffect(()=>{
         socket.emit('get old messages',contacts);
@@ -185,7 +185,7 @@ import { useEffect, useRef, useState } from 'react'
                     // spam 
                     newGlogbalHistory.set(from,[newMessage]);
                 }
-                console.log("[DM]",newGlogbalHistory);
+                //console.log("[DM]",newGlogbalHistory);
                 return newGlogbalHistory ;
             })
             setComponentType(old=>{
@@ -218,7 +218,7 @@ import { useEffect, useRef, useState } from 'react'
                     // spam 
                     newGlogbalHistory.set(to,[newMessage]);
                 }
-                console.log("[DM]",newGlogbalHistory);
+                //console.log("[DM]",newGlogbalHistory);
                 return newGlogbalHistory ;
             })
             setComponentType(old=>{

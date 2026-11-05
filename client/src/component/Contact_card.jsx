@@ -3,11 +3,11 @@
 function ContactCard({onSelect,lastMapObj}){
 
     const componentType = lastMapObj.get("componentType");
-    console.log(componentType);
-    console.log("[ContactCard] : lastMapObj",lastMapObj);
+    //console.log(componentType);
+    //console.log("[ContactCard] : lastMapObj",lastMapObj);
     const roomName = lastMapObj.get("roomName") ;
     if (lastMapObj.get("type")!=="empty"){
-        console.log(lastMapObj.get("time").toString());
+        //console.log(lastMapObj.get("time").toString());
         new Date(lastMapObj.get("time")).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit",hour12: false  });
     }
     const time = lastMapObj.get("type")==="empty" ? "": new Date(lastMapObj.get("time")).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit",hour12: false  });
@@ -28,7 +28,7 @@ function ContactCard({onSelect,lastMapObj}){
         }
         case "event":{
             const info = lastMapObj.get("info") ;
-            console.log("info",info);
+            //console.log("info",info);
             body =<>
                 <div className='contact_card_message'>{info}</div>
             </>

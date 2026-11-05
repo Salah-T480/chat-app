@@ -45,10 +45,10 @@ function ChatContainer({username,socket,history=[],hundleAddDataToHistory,id,hun
     useEffect(()=>{
         const hundleNewMessage = (obj,to)=>{
             const data = new Map();
-            console.log("obj->",obj);
+            //console.log("obj->",obj);
             data.set('msg',obj);
             hundleAddDataToHistory(data,to);
-            console.log("id",id);
+            //console.log("id",id);
         } ;
         socket.on('new message',hundleNewMessage);
         return ()=>{

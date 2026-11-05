@@ -17,8 +17,8 @@ function InputMessage({socket,hundleScoll,selected}){
         else{
             socket.emit('message',userInput,roomName);
         }
-        console.log("roomName",roomName);
-        console.log("componentType",componentType);
+        //console.log("roomName",roomName);
+        //console.log("componentType",componentType);
         setUserInput('');
         setTimeout(hundleScoll,100);
         //hundleScoll() ;

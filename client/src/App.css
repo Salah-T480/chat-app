@@ -32,17 +32,69 @@ input{
 .menu{
     display:  flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
-    padding: 10px;
-    width: 60px;
-    border-radius: 20px;
+    gap: 10px;
+    width: 50px;
+    border-radius: 10px;
     background-color: var(--color-menu-bg);
     box-shadow: 1px 1px 5px;
+    font-size: 1.2rem;
+}
+.menu_icons{
+    position: relative;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    cursor: pointer;
+}
+.menu_icons:hover{
+    background-color: #b7c8e7b5;
+}
+.menu_icons:hover::before{
+    content: attr(dfn);
+    position: absolute;
+    width: max-content;
+    right: -20px;
+    transform: translateX(100%);
+    background-color: #e5e7e7d9;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: small;
+    color: #02050a;
+
+}
+#version{
+    color: gray;
+    font-size: small;
+    font-family: monospace;
+    
+}
+.lower{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:flex-end;
+}
+.upper{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 20px 0 ;
+}
+.br{
+    background-color: rgb(72, 81, 91);
+    height: 1px;
+    width: 80%;
+
 }
 #home , #slider{
     color: #0D47A1;
     font-size: 1.4em;
+
 }
 
 .nav_chat_conatiner{
@@ -235,9 +287,11 @@ input{
     border-radius: 10px;
     height: 60px;
     align-items: center;
-    justify-content: space-between;
+    gap: 5px;
     margin: 5px 0;
     padding: 5px;
+    overflow: hidden;
+
 }
 .contact_card:hover{
     box-shadow: 1px 1px 5px #B9D3FD;
@@ -257,12 +311,20 @@ input{
     width: 40px;
 }
 .contact_card_content{
+    display: flex;
+    flex-direction: column;
     text-align: left;
     flex: 1;
+    overflow: hidden;
     padding: 0 5px;
 }
 .contact_card_roomName{
     font-weight: bold;
+}
+.contact_card_sender_message_container{
+    display: flex;
+    gap: 5px;
+    overflow: hidden;
 }
 .contact_card_message{
     font-size: small;

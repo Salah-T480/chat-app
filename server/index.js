@@ -168,7 +168,7 @@ io.on('connection',(socket)=>{
             else{
                 usersForEachRoom.set("general",[username]);
             }
-
+            
             socket.room= 'general';
             console.log(`${username} connected with socketID ${socket.id} `);
             console.log(`${username} joined the general room `);

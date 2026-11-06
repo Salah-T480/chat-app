@@ -15,7 +15,7 @@ function ContactNav({width,hundleSelected,contacts,lastMessagesAndEvents}){
         body = lastMessagesAndEvents.map((lastMapObj,i) => <ContactCard lastMapObj ={lastMapObj} key={i} onSelect = {hundleSelected} >  </ContactCard>  ) ;
     }
     else{
-        const filted = lastMessagesAndEvents.filter(lastMapObj=> lastMapObj.get("roomName").toLowerCase().includes( filterBy.toLowerCase() )) ;
+        const filted = lastMessagesAndEvents.filter(lastMapObj=> lastMapObj.get("roomName").toLowerCase().includes( filterBy.trim().toLowerCase() )) ;
         body = filted.map((lastMapObj,i) => <ContactCard lastMapObj ={lastMapObj} key={i} onSelect = {hundleSelected} >  </ContactCard>  ) ;
     }
     console.log(body);

@@ -15,11 +15,14 @@ function ContactCard({onSelect,lastMapObj}){
     
     switch(lastMapObj.get("type")){
         case "msg":{
-            const sender = lastMapObj.get("sender") ;
-            const message = lastMapObj.get("message") ;
+            const sender = lastMapObj.get("sender")+"kdkdldfs;fafa" ;
+            let message = lastMapObj.get("message") ;
+            if(message.length>17){
+                message = message.slice(0,17)+"....";
+            }
             body = <>
-                <div>
-                    <span className="contact_card_sender" > {sender} : </span>
+                <div className="contact_card_sender_message_container">
+                    <span className="contact_card_sender" > {sender}:</span>
                     <span className="contact_card_message" > {message}  </span>
                 </div>
                 
@@ -30,7 +33,7 @@ function ContactCard({onSelect,lastMapObj}){
             const info = lastMapObj.get("info") ;
             //console.log("info",info);
             body =<>
-                <div className='contact_card_message'>{info}</div>
+                <div className='contact_card_message'>{info.slice(0,30)}</div>
             </>
             break
         }
